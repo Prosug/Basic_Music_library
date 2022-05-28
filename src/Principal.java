@@ -26,8 +26,17 @@ public class Principal {
         f.WriteFile(new Song("SA",1,"R","NDD"));
         f.WriteFile(new Song("WAAA",1,"T","DM"));
         User u=new User("AAA",14,"VVV",f);
-        u.Show();
+
+        FileSong f2=new FileSong("Dos");
         
+        f2.WriteFile(new Song("A",1,"T","HDDDD"));
+        f2.WriteFile(new Song("SA",1,"R","NDD"));
+        f2.WriteFile(new Song("WAAA",1,"T","DM"));
+
+        User u2=new User("ADRAINA", 4, "Gender", f2);
+
+        u.Show();
+        u2.Show();
     }
     
 }

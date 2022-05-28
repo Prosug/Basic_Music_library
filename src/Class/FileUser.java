@@ -10,6 +10,9 @@ import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 /**
  *
@@ -20,12 +23,40 @@ public class FileUser {
     public FileUser(String name){
         this.FileName=name;
     }
-    public void ReadFile() throws FileNotFoundException{
+    public void ReadFile() throws IOException{
         FileInputStream fil=new FileInputStream(FileName);
         DataInputStream read=new DataInputStream(fil);
+        ObjectInputStream read2= new ObjectInputStream(fil);
+        User u=new User();
+        try {
+            u.ReadFile(read, read2);
+        } catch (Exception e) {
+            System.out.println("Final del archivo");
+        }
+        finally{
+            read.close();
+            read2.close();
+        }
     }
-    public void WriteFile() throws FileNotFoundException{
+    public void WriteFile(User u) throws IOException{
         FileOutputStream fil=new FileOutputStream(FileName,true );
         DataOutputStream write=new DataOutputStream(fil);
+        ObjectOutputStream write2=new ObjectOutputStream(fil);
+        try {
+            u.WriteFile(write, write2);
+        } catch (Exception e) {
+            System.out.println("Erro al insertar los datos..");
+        }
+        finally{
+            write.close();
+            write2.close();
+        }
     }
+    public String getFileName() {
+        return FileName;
+    }
+    public void setFileName(String fileName) {
+        FileName = fileName;
+    }
+    
 }
