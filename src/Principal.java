@@ -1,5 +1,7 @@
 
-import Class.FileSong;
+import Class.FileUser;
+import Class.LSimpleS;
+import Class.NodoS;
 import Class.Song;
 import Class.User;
 import java.io.IOException;
@@ -20,23 +22,27 @@ public class Principal {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
-        FileSong f=new FileSong("Uno");
+        LSimpleS f=new LSimpleS();
         
-        f.WriteFile(new Song("A",1,"T","HDDDD"));
-        f.WriteFile(new Song("SA",1,"R","NDD"));
-        f.WriteFile(new Song("WAAA",1,"T","DM"));
+        f.AdicionarF(new NodoS(new Song("A",1,"T","HDDDD")));
+     
+        f.AdicionarF(new NodoS(new Song("SA",1,"R","NDD")));
+        f.AdicionarF(new NodoS(new Song("WAAA",1,"T","DM")));
         User u=new User("AAA",14,"VVV",f);
 
-        FileSong f2=new FileSong("Dos");
+        LSimpleS f2=new LSimpleS();
         
-        f2.WriteFile(new Song("A",1,"T","HDDDD"));
-        f2.WriteFile(new Song("SA",1,"R","NDD"));
-        f2.WriteFile(new Song("WAAA",1,"T","DM"));
+        f2.AdicionarF(new NodoS(new Song("A",1,"T","HDDDD")));
+        f2.AdicionarF(new NodoS(new Song("SA",1,"R","NDD")));
+        f2.AdicionarF(new NodoS(new Song("WAAA",1,"T","DM")));
 
         User u2=new User("ADRAINA", 4, "Gender", f2);
 
-        u.Show();
-        u2.Show();
+        FileUser user=new FileUser("Nuevo3");
+        user.WriteFile(u);
+        user.WriteFile(u2);
+        user.Show();
+
     }
     
 }

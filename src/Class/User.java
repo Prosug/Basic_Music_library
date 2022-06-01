@@ -19,12 +19,13 @@ public class User {
     private String name;
     private int Age;
     private String Gender;
-    private FileSong ls;
+    private LSimpleS ls;
+   
     public User(){
-        
+       
     }
 
-    public User(String name, int Age, String Gender, FileSong ls) {
+    public User(String name, int Age, String Gender, LSimpleS ls) {
         this.name = name;
         this.Age = Age;
         this.Gender = Gender;
@@ -33,20 +34,36 @@ public class User {
             
     public void Show() throws IOException{
         System.out.println("Name: "+this.name+" Age: "+this.Age+"Gender: "+this.Gender);
-        ls.ReadFile2();
+        ls.Mostrar();
+        
     }
     public void ReadFile(DataInputStream read,ObjectInputStream read2) throws IOException, ClassNotFoundException{
         name=read.readUTF();
         Age=read.readInt();
         Gender=read.readUTF();
-        ls=(FileSong)read2.readObject();   
+    
+        Song s=new Song();
+        s.ReadFile(read);
+        ls.AdicionarF(new NodoS(s));
+     /*
+        for(int i=0;i<2;i++){
+            Song s=new Song();
+            s.ReadFile(read);
+            ls.AdicionarF(new NodoS(s));
+        }*/
+
     }
     public void WriteFile(DataOutputStream write,ObjectOutputStream write2) throws IOException{
         write.writeUTF(name);
         write.writeInt(Age);
         write.writeUTF(Gender);
-        write2.writeObject(ls);
+        NodoS aux=ls.getRoot();
+        while(aux!=null){
+            aux.getVal().WriteFile(write);
+            aux=aux.getSig();
+        }
     }
+
 
     public String getName() {
         return name;
@@ -72,11 +89,11 @@ public class User {
         this.Gender = Gender;
     }
 
-    public FileSong getLs() {
+    public LSimpleS getLs() {
         return ls;
     }
 
-    public void setLs(FileSong ls) {
+    public void setLs(LSimpleS ls) {
         this.ls = ls;
     }
     

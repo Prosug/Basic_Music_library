@@ -38,6 +38,25 @@ public class FileUser {
             read2.close();
         }
     }
+    public void Show() throws IOException{
+        FileInputStream fil=new FileInputStream(FileName);
+        DataInputStream read=new DataInputStream(fil);
+        ObjectInputStream read2= new ObjectInputStream(fil);
+        User u=new User();
+        try {
+            while(true){   
+                u.ReadFile(read, read2);
+                u.Show();
+            }
+           
+        } catch (Exception e) {
+            System.out.println("Final del archivo"+e);
+        }
+        finally{
+            read.close();
+            read2.close();
+        }
+    }
     public void WriteFile(User u) throws IOException{
         FileOutputStream fil=new FileOutputStream(FileName,true );
         DataOutputStream write=new DataOutputStream(fil);
