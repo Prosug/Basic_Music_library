@@ -8,8 +8,7 @@ package Class;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+
 
 /**
  *
@@ -19,52 +18,37 @@ public class User {
     private String name;
     private int Age;
     private String Gender;
-    private LSimpleS ls;
+    private String FileNameS;
+
    
     public User(){
        
     }
 
-    public User(String name, int Age, String Gender, LSimpleS ls) {
+    public User(String name, int Age, String Gender,String FileNameS) {
         this.name = name;
         this.Age = Age;
         this.Gender = Gender;
-        this.ls = ls;
+        this.FileNameS=FileNameS; 
     }
             
     public void Show() throws IOException{
         System.out.println("Name: "+this.name+" Age: "+this.Age+"Gender: "+this.Gender);
-        ls.Mostrar();
-        
+        FileSong s=new FileSong(FileNameS);
+        s.ReadFile2();
     }
-    public void ReadFile(DataInputStream read,ObjectInputStream read2) throws IOException, ClassNotFoundException{
+    public void ReadFile(DataInputStream read) throws IOException, ClassNotFoundException{
         name=read.readUTF();
         Age=read.readInt();
         Gender=read.readUTF();
-    
-        Song s=new Song();
-        s.ReadFile(read);
-        ls.AdicionarF(new NodoS(s));
-     /*
-        for(int i=0;i<2;i++){
-            Song s=new Song();
-            s.ReadFile(read);
-            ls.AdicionarF(new NodoS(s));
-        }*/
-
+        FileNameS=read.readUTF();
     }
-    public void WriteFile(DataOutputStream write,ObjectOutputStream write2) throws IOException{
+    public void WriteFile(DataOutputStream write) throws IOException{
         write.writeUTF(name);
         write.writeInt(Age);
         write.writeUTF(Gender);
-        NodoS aux=ls.getRoot();
-        while(aux!=null){
-            aux.getVal().WriteFile(write);
-            aux=aux.getSig();
-        }
+        write.writeUTF(FileNameS);
     }
-
-
     public String getName() {
         return name;
     }
@@ -89,12 +73,11 @@ public class User {
         this.Gender = Gender;
     }
 
-    public LSimpleS getLs() {
-        return ls;
+    public String getFileNameS() {
+        return FileNameS;
     }
 
-    public void setLs(LSimpleS ls) {
-        this.ls = ls;
+    public void setFileNameS(String fileNameS) {
+        FileNameS = fileNameS;
     }
-    
 }

@@ -1,4 +1,5 @@
 
+import Class.FileSong;
 import Class.FileUser;
 import Class.LSimpleS;
 import Class.NodoS;
@@ -22,26 +23,17 @@ public class Principal {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
-        LSimpleS f=new LSimpleS();
-        
-        f.AdicionarF(new NodoS(new Song("A",1,"T","HDDDD")));
-     
-        f.AdicionarF(new NodoS(new Song("SA",1,"R","NDD")));
-        f.AdicionarF(new NodoS(new Song("WAAA",1,"T","DM")));
-        User u=new User("AAA",14,"VVV",f);
-
-        LSimpleS f2=new LSimpleS();
-        
-        f2.AdicionarF(new NodoS(new Song("A",1,"T","HDDDD")));
-        f2.AdicionarF(new NodoS(new Song("SA",1,"R","NDD")));
-        f2.AdicionarF(new NodoS(new Song("WAAA",1,"T","DM")));
-
-        User u2=new User("ADRAINA", 4, "Gender", f2);
-
-        FileUser user=new FileUser("Nuevo3");
-        user.WriteFile(u);
-        user.WriteFile(u2);
-        user.Show();
+     /*    FileSong fs=new FileSong("FileS1");
+       fs.WriteFile(new Song("Leve de ope",14,"G", "ss"));
+        fs.WriteFile(new Song("cc ope",14,"G", "g"));
+        fs.WriteFile(new Song("ggg ope",14,"G", "f"));
+        fs.WriteFile(new Song("ggg ope",14,"G", "h"));
+        FileSong fs2=new FileSong("FileS2");
+        fs2.WriteFile(new Song("Name", 4, "Gender", "NameAutor"));*/
+        FileUser fu= new FileUser("FileU");
+        //fu.WriteFile(new User("Adrian", 14, "M", "FileS1"));
+        //fu.WriteFile(new User("Gustavo", 144, "F", "FileS2"));
+        fu.Show();
 
     }
     
